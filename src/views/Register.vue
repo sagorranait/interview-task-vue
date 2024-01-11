@@ -3,22 +3,22 @@
 </script>
 
 <template>
-  <main>
-    <h1>Hey, Welcome Back !!!</h1>
-    <p>Use the email and password you chose when registering to your account.</p>
-    <form className='user-form'>
-      <input type="email" name="email" id="emailInput" placeholder='Email' required />
-      <input type="password" name="password" id="passwordInput" placeholder='Password' required />
-      <button type="submit" className='phoneMarket-btn'>Login</button>
-      <p>Don’t have an account? <RouterLink to='/register'>Create an account</RouterLink></p>
+  <main class="w-full mt-20 flex items-center justify-center flex-col">
+    <h1 class="text-3xl font-bold">Create an Account</h1>
+    <p class="text-center py-3">Even though registration just takes a few seconds, it provides <br> you complete control over your purchase.</p>
+    <form class='user-form py-5 flex items-center justify-center flex-col gap-5'>
+      <input type="text" class="w-96 p-3 border border-gray-400 rounded focus:outline-0" name="name" placeholder="Username" required />
+      <input type="email" class="w-96 p-3 border border-gray-400 rounded focus:outline-0" name="email" placeholder="Email" required />
+      <input type="password" class="w-96 p-3 border border-gray-400 rounded focus:outline-0" name="password" placeholder="Password" required/>
+      <button type="submit" class='w-96 p-3 text-base bg-red-500 text-white rounded'>Register</button>
     </form>
     <div>
-      <button>
-        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 488 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-          <path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path>
-        </svg>
+      <p class="text-center mb-5">Or</p>
+      <button class='w-96 flex items-center justify-center gap-3 p-3 text-base border border-red-500 rounded'>
+        <img class="w-6" src="../assets/search.png" alt="Search">
         <span>Continue with Google</span>
       </button>
     </div>
+    <p class="mt-5">Already have an account? <RouterLink to='/login' class="border-b border-red-500 font-semibold">Login</RouterLink></p>
   </main>
 </template>
