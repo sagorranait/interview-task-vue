@@ -26,6 +26,7 @@
 
 <template>
   <main>
+    {{ user }}
     <div class="videos mt-10 grid grid-cols-4 gap-5 gap-y-10">
       <div class="video">
         <img class="w-full" src="https://i.ytimg.com/vi/EUZ9FIU4vcI/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAUdop1uTyQ5ZlzuVcE76skWbrPeg" alt="thumbnail">

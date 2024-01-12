@@ -1,20 +1,26 @@
 <script>
   import { RouterLink } from 'vue-router';
+  import { useStore } from 'vuex';
   import { 
     signInWithEmailAndPassword, 
     onAuthStateChanged, 
     signInWithPopup,
   } from 'firebase/auth';
   import { auth, GoogleProvider } from '../firebaseConfig';
+  import { key } from '../store';
 
   export default {
     methods: {
       async loginWithGoogle() {
         try {
           const result = await signInWithPopup(auth, GoogleProvider);
+          const userInfo = {
+            username: result.user?.displayName,
+            email: result.user?.email,
+          }
 
-          const user = result.user?.email;
-          console.log('Logged in user:', user);
+          this.$store.commit('updateUser', { userInfo });
+          this.$router.push('/');
 
           if (window.opener && !window.opener.closed) {
             window.opener.postMessage('GoogleLoginSuccess', window.location.origin);

@@ -2,9 +2,8 @@ import type { InjectionKey } from "vue";
 import { createStore, useStore as baseUseStore, Store } from "vuex";
 
 export interface User {
-  name: string,
+  username: string,
   email: string,
-  password: string,
 }
 
 export interface State {
@@ -21,6 +20,11 @@ const store = createStore<State>({
   state () {
     return {
       user: []
+    }
+  },
+  mutations: {
+    updateUser(state: State, payload: { userInfo: User }){
+      state.user.push(payload.userInfo);
     }
   }
 });
