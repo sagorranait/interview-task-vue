@@ -4,7 +4,7 @@
 <template>
   <main>
     <div class="videos mt-10 grid grid-cols-4 gap-5 gap-y-10">
-      <div class="video-skeleton animate-pulse">
+      <div v-for="index in 8" :key="index" class="video-skeleton animate-pulse">
         <div class="bg-slate-200 h-[170px] w-full"></div>
         <div class="bg-slate-200 h-10 mt-3 w-full"></div>
         <div class="flex items-center justify-between mt-2">
