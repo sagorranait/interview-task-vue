@@ -1,5 +1,33 @@
-<script setup lang="ts">
-  import { RouterLink } from 'vue-router'
+<script>
+  import { RouterLink } from 'vue-router';
+  import { 
+    signInWithEmailAndPassword, 
+    onAuthStateChanged, 
+    signInWithPopup,
+  } from 'firebase/auth';
+  import { auth, GoogleProvider } from '../firebaseConfig';
+
+  export default {
+    methods: {
+      async loginWithGoogle() {
+        try {
+          const result = await signInWithPopup(auth, GoogleProvider);
+
+          const user = result.user?.email;
+          console.log('Logged in user:', user);
+
+          if (window.opener && !window.opener.closed) {
+            window.opener.postMessage('GoogleLoginSuccess', window.location.origin);
+            window.close();
+          }
+        } catch (error) {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.error('Google authentication error:', errorCode, errorMessage);
+        }
+      },
+    },
+  };
 </script>
 
 <template>
@@ -13,7 +41,7 @@
     </form>
     <div>
       <p class="text-center mb-5">Or</p>
-      <button class='w-96 flex items-center justify-center gap-3 p-3 text-base border border-red-500 rounded'>
+      <button @click="loginWithGoogle" class='w-96 flex items-center justify-center gap-3 p-3 text-base border border-red-500 rounded'>
         <img class="w-6" src="../assets/search.png" alt="Search">
         <span>Continue with Google</span>
       </button>
