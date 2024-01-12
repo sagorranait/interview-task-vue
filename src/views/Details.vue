@@ -1,14 +1,26 @@
-<script setup lang="ts">
+<script>
+  import { useStore } from 'vuex';
+  import { key } from '../store';
+
+  export default {
+    data () {
+      const store = useStore(key)
+
+      return {
+        id: this.$route.params.id,
+        videos: store.state.videos,
+      };
+    },
+  }
   
 </script>
 
 <template>
   <main>
     <div class="video-details">
-      <!-- src="https://www.youtube.com/embed/EUZ9FIU4vcI?si=O2RPeYmZmkloWBv1&autoplay=1"  -->
       <iframe 
         class="w-full h-[500px]" 
-        src="https://www.youtube.com/embed/EUZ9FIU4vcI?si=O2RPeYmZmkloWBv1" 
+        src="https://www.youtube.com/embed/EUZ9FIU4vcI?si=O2RPeYmZmkloWBv1&autoplay=1" 
         title="YouTube video player" 
         frameborder="0" 
         allow="autoplay; picture-in-picture;" 

@@ -18,7 +18,7 @@ export interface User {
 
 export interface State {
   user: Array<User>,
-  videos: Array<Videos>
+  videos: Array<Videos>,
 }
 
 export const key: InjectionKey<Store<State>> = Symbol();
@@ -39,7 +39,7 @@ const store = createStore<State>({
       state.user.push(payload.userInfo);
     },
 
-    newVideos(state: State, payload: { data: Array<Videos> }){      
+    newVideos(state: State, payload: { data: Array<Videos> }){
       state.videos.push(...payload.data);
     }
   }

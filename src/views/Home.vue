@@ -14,34 +14,32 @@
       const store = useStore(key)
 
       return {
+        loading: false,
+        dataFetched: false,
         user: store.state.user,
         videos: store.state.videos,
-        loading: false,
       };
     },
     methods: {
-      watchHandler() {
-        if (this.user.length === 0) {
-          this.$router.push('/login');
-        }else{
-          this.$router.push('/details');
-        }
-      },
       async fetchData() {
         try {
-          this.loading = true;
-          const response = await fetch('data.json');
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
+          if (this.videos.length === 0) {
+            this.loading = true;
+            const response = await fetch('data.json');
+  
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+  
+            const jsonData = await response.json();
+            
+            if (jsonData) {
+              setTimeout(() => {
+                this.loading = false;
+                this.$store.commit('newVideos', { data: jsonData });
+              }, 500);
+            }     
           }
-
-          const jsonData = await response.json();
-          if (jsonData) {
-            setTimeout(() => {
-              this.loading = false;
-              this.$store.commit('newVideos', { data: jsonData });
-            }, 500);
-          }     
         } catch (error) {
           this.loading = false;
           console.error('Error fetching data:', error.message);
